@@ -72,6 +72,11 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.google.code.gson:gson:2.9.1")
     implementation("com.tbuonomo:dotsindicator:5.0")
+<<<<<<< HEAD
     //gms_play_services
     implementation("com.google.android.gms:play-services-auth:21.0.0")
+=======
+
+
+>>>>>>> 3e562aeb2bfb7723f2430e045fa1572aff721c49
 }
