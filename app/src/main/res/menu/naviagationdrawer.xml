@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <group android:checkableBehavior="single">
+        <item android:title="Contact Us"
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/baseline_call_24"/>
+        <item android:id="@+id/nav_Account"
+            android:icon="@drawable/baseline_person_24"
+            android:title="Account"/>
+        <item android:id="@+id/navSetting"
+            android:icon="@drawable/baseline_settings_24"
+            android:title="Setting"/>
+        <item android:id="@+id/nav_Search"
+            android:icon="@drawable/baseline_search_24"
+            android:title="Search"/>
+
+    </group>
+    <item android:title="Log Out"
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/baseline_logout_24"/>
+
+</menu>
