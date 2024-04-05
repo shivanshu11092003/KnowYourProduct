@@ -13,7 +13,7 @@
         android:title="Post"/>
     <item android:id="@+id/nav_Notification"
         android:icon="@drawable/baseline_notifications_24"
-        android:title="Post"/>
+        android:title="Alert"/>
 
     <item android:id="@+id/nav_Account"
         android:icon="@drawable/baseline_person_24"
