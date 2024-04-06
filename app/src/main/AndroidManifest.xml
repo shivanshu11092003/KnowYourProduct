@@ -13,10 +13,16 @@
         android:theme="@style/Theme.KnowYourProduct"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
+
             android:name=".Activity.Login"
             android:exported="true" >
-=======
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+<activity
             android:name=".Activity.SignINorUPScreen"
             android:exported="false" />
         <activity
@@ -25,18 +31,10 @@
         <activity
             android:name=".Activity.MainActivity"
             android:exported="true">
->>>>>>> 3e562aeb2bfb7723f2430e045fa1572aff721c49
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".Activity.MainActivity"
-            android:exported="false">
 
         </activity>
+
     </application>
 
 </manifest>
