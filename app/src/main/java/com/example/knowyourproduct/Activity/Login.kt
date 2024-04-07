@@ -1,9 +1,6 @@
 package com.example.knowyourproduct.Activity
-
 import android.content.Intent
 import android.os.Bundle
-
-
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -11,18 +8,13 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-
-
 import com.example.knowyourproduct.Model.GoogleDetails
 import com.example.knowyourproduct.R
 import com.example.knowyourproduct.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.SignInClient
-
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-
 import com.google.android.gms.common.api.ApiException
-
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
