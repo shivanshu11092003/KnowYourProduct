@@ -2,6 +2,7 @@ package com.example.knowyourproduct.Activity
 
 import android.os.Build
 import android.os.Bundle
+import android.service.autofill.UserData
 import android.view.MenuItem
 import android.view.Window
 import android.view.WindowManager
@@ -14,8 +15,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.example.knowyourproduct.Model.GoogleDetails
 import com.example.knowyourproduct.R
 import com.example.knowyourproduct.databinding.ActivityMainBinding
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
@@ -56,10 +59,16 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
 
 
         }
+//        val headerview = binding.navView.getHeaderView(0)
+//        val headerpic=headerview.findViewById<ShapeableImageView>(R.id.imageID)
+
 
 
 
     }
+//    fun processdata(userData: GoogleDetails){
+//        val accountname = GoogleDetails
+//    }
 
     private fun replacefragment(fragment : Fragment) {
         val fragmentManager = supportFragmentManager

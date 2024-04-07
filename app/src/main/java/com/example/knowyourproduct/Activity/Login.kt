@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.trusted.Token
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.knowyourproduct.Model.GoogleDetails
 import com.example.knowyourproduct.R
 import com.example.knowyourproduct.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
@@ -104,39 +105,22 @@ class Login : AppCompatActivity() {
 
 
     }
-    private val launcher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ){result ->
-        if (result.resultCode == RESULT_OK) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-            manageResule(task)
-        }
-    }
+//    private fun showUser(){
+//        val user = Firebase.auth.currentUser
+//        user?.let{
+//            val name = it.displayName
+//            val email = it.email
+//            val photourl = it.photoUrl
+//            val emailverifies = it.isEmailVerified
+//            val userdata = GoogleDetails(name.toString(),photourl.toString(),email.toString(),emailverifies.toString())
+//
+//
+//        }
+//    }
 
-    private fun manageResule(task: Task<GoogleSignInAccount>) {
-        if (task.isSuccessful){
-            val account: GoogleSignInAccount? = task.result
-            if(account!=null){
-                updateUi(account)
-            }
-        }
 
-    }
 
-    private fun updateUi(account: GoogleSignInAccount) {
-        val credential = GoogleAuthProvider.getCredential(account.idToken,null)
-        auth.signInWithCredential(credential).addOnCompleteListener {
-            if(it.isSuccessful){
 
-                val intent = Intent(this,MainActivity::class.java)
-                startActivity(intent)
 
-                Toast.makeText(this,"Sign In Complete",Toast.LENGTH_SHORT).show()
-            }
-        }
 
-    }
-    private fun verifyUser(){
-
-    }
 }

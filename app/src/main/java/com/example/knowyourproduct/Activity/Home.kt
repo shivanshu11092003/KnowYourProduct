@@ -1,60 +1,139 @@
 package com.example.knowyourproduct.Activity
 
+
+
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.example.knowyourproduct.Model.Post
+
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.knowyourproduct.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Home.newInstance] factory method to
- * create an instance of this fragment.
- */
+
+
+
 class Home : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    lateinit var recyclerview : RecyclerView
+    lateinit var postArrayLists: ArrayList<Post>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view =inflater.inflate(R.layout.fragment_home,container,false)
+
+        recyclerview=view.findViewById(R.id.recyclerid)
+        val Imagepost = arrayOf(
+            R.drawable.c4g041cfha821,
+            R.drawable.c4g041cfha821,
+            R.drawable.c4g041cfha821,
+            R.drawable.c4g041cfha821,
+            R.drawable.c4g041cfha821,
+            R.drawable.c4g041cfha821,
+            R.drawable.c4g041cfha821,
+            R.drawable.c4g041cfha821,
+            R.drawable.c4g041cfha821,
+            R.drawable.c4g041cfha821,
+            R.drawable.c4g041cfha821,
+            R.drawable.c4g041cfha821,
+            R.drawable.c4g041cfha821,
+
+
+            )
+        val caption = arrayOf(
+            "This product have high nutrient value and good for health.",
+            "This product have high nutrient value and good for health.",
+            "This product have high nutrient value and good for health.",
+            "This product have high nutrient value and good for health.",
+            "This product have high nutrient value and good for health.",
+            "This product have high nutrient value and good for health.",
+            "This product have high nutrient value and good for health.",
+            "This product have high nutrient value and good for health.",
+            "This product have high nutrient value and good for health.",
+            "This product have high nutrient value and good for health.",
+            "This product have high nutrient value and good for health.",
+            "This product have high nutrient value and good for health.",
+            "This product have high nutrient value and good for health.",
+
+            )
+        val profilepic = arrayOf(
+            R.drawable.unnamed,
+            R.drawable.unnamed,
+            R.drawable.unnamed,
+            R.drawable.unnamed,
+            R.drawable.unnamed,
+            R.drawable.unnamed,
+            R.drawable.unnamed,
+            R.drawable.unnamed,
+            R.drawable.unnamed,
+            R.drawable.unnamed,
+            R.drawable.unnamed,
+            R.drawable.unnamed,
+            R.drawable.unnamed,
+
+
+            )
+        val accountname = arrayOf(
+            "Account Name 1",
+            "Account Name 2",
+            "Account Name 3",
+            "Account Name 4",
+            "Account Name 5",
+            "Account Name 6",
+            "Account Name 7",
+            "Account Name 8",
+            "Account Name 9",
+            "Account Name 10",
+            "Account Name 11",
+            "Account Name 12",
+            "Account Name 13"
+
+        )
+
+        recyclerview.layoutManager = LinearLayoutManager(requireContext())
+        postArrayLists = arrayListOf<Post>()
+        for (index in Imagepost.indices) {
+            val post = Post(
+                Imagepost[index],
+                caption[index],
+                profilepic[index],
+                accountname[index]
+            )
+            postArrayLists.add(post)
+        }
+
+
+        var myAdapter = chatRecyclerViewAdapter(postArrayLists, this@Home)
+        recyclerview.adapter = myAdapter
+        return view
+
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Home.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Home().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
