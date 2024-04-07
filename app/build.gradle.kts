@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -76,5 +77,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:21.0.0")
     //Corountines
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+    //picasso
+    implementation("com.squareup.picasso:picasso:2.8")
 
 }

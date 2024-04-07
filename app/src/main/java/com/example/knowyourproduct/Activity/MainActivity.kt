@@ -1,18 +1,17 @@
 package com.example.knowyourproduct.Activity
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.service.autofill.UserData
 import android.view.MenuItem
 import android.view.Window
 import android.view.WindowManager
+import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.knowyourproduct.Model.GoogleDetails
@@ -20,6 +19,13 @@ import com.example.knowyourproduct.R
 import com.example.knowyourproduct.databinding.ActivityMainBinding
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
 
 class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
@@ -29,7 +35,9 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         changeStatusBarColor("#0074D9") // Replace with your desired color code
+
         drawerlayout = binding.navDrawer
 
         setSupportActionBar(binding.toolbar)
@@ -59,16 +67,30 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
 
 
         }
-//        val headerview = binding.navView.getHeaderView(0)
-//        val headerpic=headerview.findViewById<ShapeableImageView>(R.id.imageID)
-
+        val userdata=Login.showUser()
+        processData(userdata)
 
 
 
     }
-//    fun processdata(userData: GoogleDetails){
-//        val accountname = GoogleDetails
-//    }
+    fun processData(userData: GoogleDetails) {
+        val headerview = binding.navView.getHeaderView(0)
+        val headerpic=headerview.findViewById<ShapeableImageView>(R.id.imageID)
+        val headeraccountname = headerview.findViewById<TextView>(R.id.accountnameid)
+        val headeremail =headerview.findViewById<TextView>(R.id.email_navholder)
+
+        // Access and use the properties of the UserData object
+        headeraccountname.text=userData.accountname
+        Picasso.get().load(userData.profileimage).into(headerpic)
+        headeremail.text=userData.email
+
+
+
+
+
+        // Use the data as needed
+
+    }
 
     private fun replacefragment(fragment : Fragment) {
         val fragmentManager = supportFragmentManager
@@ -100,7 +122,22 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
             R.id.nav_Account -> replacefragment(Account())
             R.id.nav_Search -> replacefragment(Search())
             R.id.nav_Setting -> replacefragment(Setting())
-            R.id.nav_logout -> Toast.makeText(this,"Log_Out",Toast.LENGTH_SHORT).show()
+            R.id.nav_logout -> {
+                Firebase.auth.signOut()
+                val headerview = binding.navView.getHeaderView(0)
+                val headerpic=headerview.findViewById<ShapeableImageView>(R.id.imageID)
+                val headeraccountname = headerview.findViewById<TextView>(R.id.accountnameid)
+                val headeremail =headerview.findViewById<TextView>(R.id.email_navholder)
+
+                headeraccountname.text="Please Login "
+                headerpic.setImageResource(R.drawable.unnamed)
+                headeremail.text=" "
+            }
+            R.id.nav_login -> {
+                val intent = Intent(this,Login::class.java)
+                startActivity(intent)
+            }
+
 
         }
         drawerlayout.closeDrawer(GravityCompat.START)
@@ -109,3 +146,5 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
 
 
 }
+
+

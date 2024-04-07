@@ -15,9 +15,10 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/user_pic"
-            android:layout_width="50dp"
+            app:shapeAppearance="@style/ShapeAppearance.App.LargeComponent"
+            android:layout_width="40dp"
             android:scaleType="fitCenter"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_margin="8dp"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,7 +37,7 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintHorizontal_bias="0.011"
             app:layout_constraintStart_toEndOf="@+id/user_pic"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.048" />
@@ -128,15 +129,15 @@
             android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:contentDescription="save"
             android:src="@drawable/baseline_save_alt_24"
-            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.958"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.983" />
+            app:layout_constraintVertical_bias="0.981" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

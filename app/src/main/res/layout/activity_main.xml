@@ -86,6 +86,8 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"
+        app:itemRippleColor="@color/black"
+        app:itemTextColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingTop="30dp"

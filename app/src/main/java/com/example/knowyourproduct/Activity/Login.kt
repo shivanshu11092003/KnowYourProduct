@@ -2,7 +2,8 @@ package com.example.knowyourproduct.Activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Identity
+
+
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -10,20 +11,18 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.browser.trusted.Token
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+
+
 import com.example.knowyourproduct.Model.GoogleDetails
 import com.example.knowyourproduct.R
 import com.example.knowyourproduct.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.SignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
+
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
@@ -32,6 +31,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+
+
+
 
 class Login : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -42,6 +44,8 @@ class Login : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         enableEdgeToEdge()
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -55,6 +59,13 @@ class Login : AppCompatActivity() {
                 .build()
         )
             .build()
+        //already sign in
+        if (auth.currentUser != null) {
+            // User is already signed in, navigate to the main activity
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish() // Finish the login activity to prevent going back to it when pressing back button
+        }
 
 
     }
@@ -76,10 +87,13 @@ class Login : AppCompatActivity() {
                     auth.signInWithCredential(firebasecredential).addOnCompleteListener {
                         if (it.isSuccessful) {
 
+
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
 
                             Toast.makeText(this, "Sign In Complete", Toast.LENGTH_SHORT).show()
+
+                            finish()
                         }
 
 
@@ -99,28 +113,36 @@ class Login : AppCompatActivity() {
 
 
     }
+
+
+    override fun onStart() {
+        super.onStart()
+        val currentuser = auth.currentUser
+        if (currentuser!=null) run {
+            showUser()
+        }
+  }
     fun signoutgoogle(view: View) {
         Firebase.auth.signOut()
-        Toast.makeText(this,"Sign out Complete",Toast.LENGTH_SHORT).show()
-
 
     }
-//    private fun showUser(){
-//        val user = Firebase.auth.currentUser
-//        user?.let{
-//            val name = it.displayName
-//            val email = it.email
-//            val photourl = it.photoUrl
-//            val emailverifies = it.isEmailVerified
-//            val userdata = GoogleDetails(name.toString(),photourl.toString(),email.toString(),emailverifies.toString())
-//
-//
-//        }
-//    }
+    companion object {
 
+        fun showUser(): GoogleDetails {
+            val user = Firebase.auth.currentUser
+            return if (user != null) {
+                val name = user.displayName ?: ""
+                val email = user.email ?: ""
+                val photourl = user.photoUrl?.toString() ?: ""
 
+                GoogleDetails(name, photourl, email)
+            } else {
 
+                GoogleDetails("", "", "")
+            }
 
+        }
+    }
 
 
 }
