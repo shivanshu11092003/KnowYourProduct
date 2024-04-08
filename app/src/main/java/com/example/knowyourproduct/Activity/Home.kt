@@ -12,14 +12,22 @@ import com.example.knowyourproduct.Model.Post
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.knowyourproduct.R
-
-
-
+import com.smarteist.autoimageslider.SliderView
 
 
 class Home : Fragment() {
     lateinit var recyclerview : RecyclerView
     lateinit var postArrayLists: ArrayList<Post>
+
+    lateinit var imageUrl: ArrayList<String>
+
+    // on below line we are creating
+    // a variable for our slider view.
+    lateinit var sliderView: SliderView
+
+    // on below line we are creating
+    // a variable for our slider adapter.
+    lateinit var sliderAdapter: SliderAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,24 +40,12 @@ class Home : Fragment() {
     ): View? {
         val view =inflater.inflate(R.layout.fragment_home,container,false)
 
+
+
+
+
         recyclerview=view.findViewById(R.id.recyclerid)
-        val Imagepost = arrayOf(
-            R.drawable.c4g041cfha821,
-            R.drawable.c4g041cfha821,
-            R.drawable.c4g041cfha821,
-            R.drawable.c4g041cfha821,
-            R.drawable.c4g041cfha821,
-            R.drawable.c4g041cfha821,
-            R.drawable.c4g041cfha821,
-            R.drawable.c4g041cfha821,
-            R.drawable.c4g041cfha821,
-            R.drawable.c4g041cfha821,
-            R.drawable.c4g041cfha821,
-            R.drawable.c4g041cfha821,
-            R.drawable.c4g041cfha821,
 
-
-            )
         val caption = arrayOf(
             "This product have high nutrient value and good for health.",
             "This product have high nutrient value and good for health.",
@@ -102,9 +98,8 @@ class Home : Fragment() {
 
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
         postArrayLists = arrayListOf<Post>()
-        for (index in Imagepost.indices) {
+        for (index in caption.indices) {
             val post = Post(
-                Imagepost[index],
                 caption[index],
                 profilepic[index],
                 accountname[index]

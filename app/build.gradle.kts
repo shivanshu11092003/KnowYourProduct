@@ -54,6 +54,8 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.storage)
     implementation(libs.firebase.firestore.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -80,5 +82,14 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
     //picasso
     implementation("com.squareup.picasso:picasso:2.8")
+    //Autoimage
+    implementation ("com.github.smarteist:autoimageslider:1.4.0")
+    //Glide
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    //Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    //gson converter
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
 
 }

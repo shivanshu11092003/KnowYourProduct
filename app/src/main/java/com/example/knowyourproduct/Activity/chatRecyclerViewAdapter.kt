@@ -16,7 +16,7 @@ class chatRecyclerViewAdapter(var postArrayList: ArrayList<Post>, var context: H
 
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemview= LayoutInflater.from(parent.context).inflate(R.layout.eachpost,parent,false)
+        val itemview= LayoutInflater.from(parent.context).inflate(R.layout.activity_eachpost,parent,false)
         return ViewHolder(itemview)
 
     }
@@ -26,7 +26,8 @@ class chatRecyclerViewAdapter(var postArrayList: ArrayList<Post>, var context: H
         holder.accountname.text = currentitem.Account_name
         holder.profilepic.setImageResource(currentitem.profile_pic)
         holder.caption.text = currentitem.caption
-        holder.postpic.setImageResource(currentitem.ImagePost)
+
+
 
 
     }
@@ -37,7 +38,7 @@ class chatRecyclerViewAdapter(var postArrayList: ArrayList<Post>, var context: H
     class ViewHolder(itemview: View):RecyclerView.ViewHolder(itemview) {
         val profilepic = itemview.findViewById<ShapeableImageView>(R.id.user_pic)
         val accountname = itemview.findViewById<TextView>(R.id.user_name)
-        val postpic = itemview.findViewById<ShapeableImageView>(R.id.post_pic)
+
         val caption = itemview.findViewById<TextView>(R.id.description)
 
     }
