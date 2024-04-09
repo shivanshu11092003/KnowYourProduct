@@ -127,7 +127,7 @@ class Login : AppCompatActivity() {
                 val email = user.email ?: ""
                 val photourl = user.photoUrl?.toString() ?: ""
 
-                GoogleDetails(name, photourl, email)
+                GoogleDetails(name, photourl,email)
             } else {
 
                 GoogleDetails("", "", "")

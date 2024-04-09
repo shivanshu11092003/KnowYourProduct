@@ -2,6 +2,7 @@ package com.example.knowyourproduct.Activity
 
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,15 +20,7 @@ class Home : Fragment() {
     lateinit var recyclerview : RecyclerView
     lateinit var postArrayLists: ArrayList<Post>
 
-    lateinit var imageUrl: ArrayList<String>
 
-    // on below line we are creating
-    // a variable for our slider view.
-    lateinit var sliderView: SliderView
-
-    // on below line we are creating
-    // a variable for our slider adapter.
-    lateinit var sliderAdapter: SliderAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,8 +101,9 @@ class Home : Fragment() {
         }
 
 
-        var myAdapter = chatRecyclerViewAdapter(postArrayLists, this@Home)
+        var myAdapter = chatRecyclerViewAdapter(postArrayLists,requireContext())
         recyclerview.adapter = myAdapter
+        
         return view
 
 

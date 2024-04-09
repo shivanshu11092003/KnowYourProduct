@@ -31,8 +31,7 @@ class SplashScreen : AppCompatActivity() {
 
 
     private fun navigatetoLogin() {
-        val intent = Intent(this,SignINorUPScreen::class.java)
-        startActivity(intent)
+
     }
 
     private fun navigatetoHome() {
