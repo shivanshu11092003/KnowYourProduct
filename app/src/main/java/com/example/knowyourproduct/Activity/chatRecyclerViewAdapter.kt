@@ -20,7 +20,7 @@ class chatRecyclerViewAdapter(var postArrayList: ArrayList<Post>,var context: Co
     RecyclerView.Adapter<chatRecyclerViewAdapter.ViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemview= LayoutInflater.from(parent.context).inflate(R.layout.activity_eachpost,parent,false)
-            return ViewHolder(itemview)
+            return ViewHolder(itemview,)
 
     }
 

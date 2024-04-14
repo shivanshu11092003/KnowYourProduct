@@ -3,41 +3,80 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".Activity.Post">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/upload_reel"
-            android:layout_width="286dp"
-            android:layout_height="32dp"
-            android:textSize="20dp"
-            android:text="Reel"
-            app:layout_constraintBottom_toBottomOf="parent"
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/selectuploadpic"
+            android:layout_width="263dp"
+            android:layout_height="237dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/c4g041cfha821"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.022" />
+            app:layout_constraintVertical_bias="0.219" />
 
-        <TextView
-            android:id="@+id/upload_post"
-            android:layout_width="286dp"
-            android:layout_height="32dp"
-            android:text="Post"
-            android:textSize="20dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            android:layout_width="299dp"
+            android:layout_height="53dp"
+            android:layout_marginBottom="136dp"
+
+            android:hint="write Caption"
+            app:boxStrokeColor="#0074D9"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="369dp"
+            android:layout_height="61dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/upload_reel" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.732">
+
+            <Button
+                android:id="@+id/Uploadbtn"
+                android:layout_width="201dp"
+                android:layout_height="59dp"
+                android:layout_marginBottom="212dp"
+
+
+                android:layout_weight="1"
+                android:backgroundTint="#0074D9"
+                android:text="Upload" />
+
+            <Button
+                android:id="@+id/cancelbtn"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="201dp"
+
+
+                android:layout_height="59dp"
+                android:layout_weight="1"
+                android:text="cancel"
+                app:strokeColor="#0074D9" />
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </LinearLayout>

@@ -64,22 +64,33 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
 
 
         }
-        val userdata=Login.showUser()
-        processData(userdata)
+        val googleData=Login.showUser()
+        processData(googleData)
 
 
 
     }
-    fun processData(userData: GoogleDetails) {
-        val headerview = binding.navView.getHeaderView(0)
-        val headerpic=headerview.findViewById<ShapeableImageView>(R.id.imageID)
-        val headeraccountname = headerview.findViewById<TextView>(R.id.accountnameid)
-        val headeremail =headerview.findViewById<TextView>(R.id.email_navholder)
+    private fun processData(googleData: GoogleDetails) {
+        if (googleData != null) {
+            val headerview = binding.navView.getHeaderView(0)
+            val headerpic = headerview?.findViewById<ShapeableImageView>(R.id.imageID)
+            val headeraccountname = headerview?.findViewById<TextView>(R.id.accountnameid)
+            val headeremail = headerview?.findViewById<TextView>(R.id.email_navholder)
 
-        // Access and use the properties of the UserData object
-        headeraccountname.text=userData.accountname
-        Picasso.get().load(userData.profileimage).into(headerpic)
-        headeremail.text=userData.email
+            // Access and use the properties of the UserData object
+            headeraccountname?.text = googleData.accountname
+            Picasso.get().load(googleData.profileimage).into(headerpic)
+            headeremail?.text = googleData.email
+        }else{
+            val headerview = binding.navView.getHeaderView(0)
+            val headerpic = headerview.findViewById<ShapeableImageView>(R.id.imageID)
+            val headeraccountname = headerview.findViewById<TextView>(R.id.accountnameid)
+            val headeremail = headerview.findViewById<TextView>(R.id.email_navholder)
+            headeraccountname.text =" googleData.accountname"
+            Picasso.get().load(R.drawable.unnamed).into(headerpic)
+            headeremail.text = "googleData.email"
+
+        }
 
 
 
@@ -96,6 +107,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         fragmentTransaction.commit()
 
     }
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         super.onBackPressed()
         if (drawerlayout.isDrawerOpen(GravityCompat.START)){
@@ -106,11 +118,9 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     }
 
     private fun changeStatusBarColor(color: String) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val window: Window = window
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = android.graphics.Color.parseColor(color)
-        }
+        val window: Window = window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = android.graphics.Color.parseColor(color)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -128,10 +138,10 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
 
                 headeraccountname.text="Please Login "
                 headerpic.setImageResource(R.drawable.unnamed)
-                headeremail.text=" "
+                headeremail.text="--"
             }
             R.id.nav_login -> {
-                val intent = Intent(this,Login::class.java)
+                val intent = Intent(applicationContext,Login::class.java)
                 startActivity(intent)
             }
 
