@@ -4,6 +4,9 @@ package com.example.knowyourproduct.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.Window
 import android.view.WindowManager
@@ -27,11 +30,13 @@ import com.squareup.picasso.Picasso
 class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var drawerlayout: DrawerLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         changeStatusBarColor("#0074D9") // Replace with your desired color code
 
@@ -150,8 +155,26 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         drawerlayout.closeDrawer(GravityCompat.START)
         return true
     }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.toolbarmenu, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.chat -> {
+                replacefragment(Chat())
+
+                true
+            }
+            // Add more cases for other menu items
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
 
 
 }
+
 
 

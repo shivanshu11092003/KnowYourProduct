@@ -16,6 +16,7 @@ import com.example.knowyourproduct.Activity.utils.POST
 import com.example.knowyourproduct.Activity.utils.POST_FOLDER
 
 import com.example.knowyourproduct.Activity.utils.uploadImage
+import com.example.knowyourproduct.Model.GoogleDetails
 import com.example.knowyourproduct.Model.UserUpload
 import com.example.knowyourproduct.Model.uploadPost
 import com.example.knowyourproduct.databinding.FragmentPostBinding
@@ -48,8 +49,11 @@ class Post : Fragment() {
             if (binding.textInputLayout.editText?.text.toString().equals("")) {
                 Toast.makeText(requireContext(), "Please provide caption", Toast.LENGTH_SHORT).show()
             }else{
-                val post = uploadPost(imageUrl, binding.textInputLayout.editText?.text.toString())
+
+                val post = uploadPost(imageUrl, binding.textInputLayout.editText?.text.toString(),Login.showUser().accountname,
+                    System.currentTimeMillis().toString(),Login.showUser().profileimage)
                 Firebase.firestore.collection(POST).document().set(post).addOnSuccessListener {
+
                     Firebase.firestore.collection(Firebase.auth.currentUser!!.uid).document().set(post).addOnSuccessListener {
                         Toast.makeText(requireContext(), "Uploaded", Toast.LENGTH_SHORT).show()
 
