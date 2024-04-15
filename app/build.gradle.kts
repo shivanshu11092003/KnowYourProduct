@@ -62,38 +62,40 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     //firebase
     // https://mvnrepository.com/artifact/com.google.firebase/firebase-bom
-    implementation(platform("com.google.firebase:firebase-bom:32.0.0"))
+    implementation(platform(libs.firebase.bom))
 
-    implementation("com.google.firebase:firebase-database:20.3.1")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(libs.firebase.database)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
     //Glide
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation (libs.com.github.bumptech.glide.glide)
     //Life Cycle
-    implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0")
+    implementation (libs.androidx.lifecycle.extensions)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.core.ktx)
     //View Model
-    implementation("androidx.activity:activity-ktx:1.8.2")
-    implementation("com.github.bumptech.glide:glide:4.16.0")
-    implementation("com.google.code.gson:gson:2.9.1")
-    implementation("com.tbuonomo:dotsindicator:5.0")
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.com.github.bumptech.glide.glide)
+    implementation(libs.gson)
+    implementation(libs.dotsindicator)
     //gms_play_services
-    implementation("com.google.android.gms:play-services-auth:21.0.0")
+    implementation(libs.play.services.auth)
     //Corountines
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+    implementation (libs.kotlinx.coroutines.android)
     //picasso
-    implementation("com.squareup.picasso:picasso:2.8")
+    implementation(libs.picasso)
     //Autoimage
-    implementation ("com.github.smarteist:autoimageslider:1.4.0")
+    implementation (libs.autoimageslider)
     //Glide
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation (libs.com.github.bumptech.glide.glide)
     //Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation(libs.retrofit)
     //gson converter
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation(libs.converter.gson)
+    //lib_to_change_hexacodeIntoTime
+    implementation(libs.timeago)
 
 
 }

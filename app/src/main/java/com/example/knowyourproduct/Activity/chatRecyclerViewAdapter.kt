@@ -40,6 +40,7 @@ class chatRecyclerViewAdapter(var postArrayList: ArrayList<uploadPost>, var cont
 
         }
 
+
     }
 
 //        val sliderImageList = ArrayList<String>()
