@@ -5,6 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/white"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="3dp"
+    android:layout_marginTop="1dp"
+    app:cardMaxElevation="2dp"
     android:layout_height="399dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +50,7 @@
             android:layout_width="359dp"
             android:layout_height="224dp"
             android:layout_marginTop="28dp"
-            android:src="@drawable/c4g041cfha821"
+            android:src="@drawable/file"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +64,7 @@
             android:layout_margin="10dp"
             android:text="This product have high nutrient value and good for health."
             android:textColor="@color/black"
-            android:textSize="10dp"
+            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.473"
@@ -69,8 +74,8 @@
 
         <ImageButton
             android:id="@+id/like"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@color/white"
             android:contentDescription="like"
             android:src="@drawable/baseline_favorite_border_24"
@@ -83,8 +88,8 @@
 
         <ImageButton
             android:id="@+id/dislike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@color/white"
             android:contentDescription="dislike"
             android:src="@drawable/baseline_favorite_24"
@@ -97,8 +102,8 @@
 
         <ImageButton
             android:id="@+id/comments"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@color/white"
             android:contentDescription="comments"
             android:src="@drawable/baseline_comment_24"
@@ -111,8 +116,8 @@
 
         <ImageButton
             android:id="@+id/share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@color/white"
             android:contentDescription="share"
             android:src="@drawable/baseline_share_24"
@@ -125,17 +130,17 @@
 
         <ImageButton
             android:id="@+id/save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@color/white"
             android:contentDescription="save"
             android:src="@drawable/baseline_save_alt_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.958"
+            app:layout_constraintHorizontal_bias="0.975"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.981" />
+            app:layout_constraintVertical_bias="0.983" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

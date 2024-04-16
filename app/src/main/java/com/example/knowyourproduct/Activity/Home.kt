@@ -54,6 +54,7 @@ class Home : Fragment() {
             adapter.notifyDataSetChanged()
 
         }
+
         
         return binding.root
 

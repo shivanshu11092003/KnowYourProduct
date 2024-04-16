@@ -164,6 +164,11 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
             R.id.chat -> {
                 replacefragment(Chat())
 
+
+                true
+            }
+            R.id.search ->{
+                replacefragment(Search())
                 true
             }
             // Add more cases for other menu items

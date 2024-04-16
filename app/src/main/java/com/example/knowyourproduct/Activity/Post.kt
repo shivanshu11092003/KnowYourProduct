@@ -2,8 +2,6 @@ package com.example.knowyourproduct.Activity
 
 
 
-import android.app.ProgressDialog
-import android.net.Uri
 import android.os.Bundle
 
 import android.view.LayoutInflater
@@ -16,17 +14,14 @@ import com.example.knowyourproduct.Activity.utils.POST
 import com.example.knowyourproduct.Activity.utils.POST_FOLDER
 
 import com.example.knowyourproduct.Activity.utils.uploadImage
-import com.example.knowyourproduct.Model.GoogleDetails
 import com.example.knowyourproduct.Model.UserUpload
 import com.example.knowyourproduct.Model.uploadPost
 import com.example.knowyourproduct.databinding.FragmentPostBinding
 import com.google.firebase.Firebase
 
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.firestore
-import com.google.firebase.storage.storage
+import com.squareup.picasso.Picasso
 
 
 class Post : Fragment() {
@@ -45,19 +40,31 @@ class Post : Fragment() {
         binding.selectuploadpic.setOnClickListener {
             launcher.launch("image/*")
         }
+        Picasso.get().load(Login.showUser().profileimage).into(binding.userPic)
+        binding.userName.text = Login.showUser().accountname
+
+
         binding.Uploadbtn.setOnClickListener {
-            if (binding.textInputLayout.editText?.text.toString().equals("")) {
-                Toast.makeText(requireContext(), "Please provide caption", Toast.LENGTH_SHORT).show()
+            if (binding.textInputLayout.editText?.text.toString().equals("") || imageUrl.equals(null)) {
+                Toast.makeText(
+                        requireContext(),
+                        "Please provide caption",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+
             }else{
 
                 val post = uploadPost(imageUrl, binding.textInputLayout.editText?.text.toString(),Login.showUser().accountname,
                     System.currentTimeMillis().toString(),Login.showUser().profileimage)
+
+
                 Firebase.firestore.collection(POST).document().set(post).addOnSuccessListener {
-
                     Firebase.firestore.collection(Firebase.auth.currentUser!!.uid).document().set(post).addOnSuccessListener {
-                        Toast.makeText(requireContext(), "Uploaded", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "Uploaded", Toast.LENGTH_SHORT).show()
 
-                    }
+                        }
+
                 }
             }
 

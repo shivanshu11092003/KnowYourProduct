@@ -5,56 +5,152 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.knowyourproduct.Activity.utils.User_Node
+import com.example.knowyourproduct.Model.GoogleDetails
+import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.knowyourproduct.Activity.utils.POST
+import com.example.knowyourproduct.Model.uploadPost
 import com.example.knowyourproduct.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.knowyourproduct.databinding.FragmentSearchBinding
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.toObject
+import java.util.Locale
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Search.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class Search : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentSearchBinding
+    lateinit var searchView : SearchView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private  var postList = ArrayList<GoogleDetails>()
+    private  var postList2 = ArrayList<uploadPost>()
+    private lateinit var  myAdapter: SearchAdapter
+    private lateinit var  myAdapter2: chatRecyclerViewAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
-    }
+    ): View{
+        binding = FragmentSearchBinding.inflate(inflater,container,false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Search.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Search().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        searchView = binding.SearchView
+//        binding.recycleridSearch.visibility = View.INVISIBLE
+//        binding.materialCardView.setOnClickListener{
+//            binding.recycleridSearch.visibility = View.VISIBLE
+//        }
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filtertext(newText)
+                filtertext2(newText)
+                return true
+            }
+
+        })
+
+
+//        val postList = ArrayList<GoogleDetails>()
+        myAdapter = SearchAdapter(requireContext(),postList)
+        myAdapter2 = chatRecyclerViewAdapter(postList2,requireContext())
+
+        binding.recycleridpost.layoutManager = GridLayoutManager(requireContext(),2)
+//        binding.recycleridSearch.layoutManager = LinearLayoutManager(requireContext())
+//        binding.recycleridSearch.adapter= myAdapter
+        binding.recycleridpost.adapter= myAdapter2
+        val db = FirebaseFirestore.getInstance()
+        val collectionref = db.collection(User_Node)
+        collectionref.get().addOnSuccessListener { documents ->
+            val tempList = arrayListOf<GoogleDetails>()
+
+            for (i in documents) {
+
+                val accountname = i.getString("accountname")
+                val profileimage = i.getString("profileimage")
+                val email = i.getString("email")
+                val google = GoogleDetails(
+                    accountname.toString(), profileimage.toString(),
+                    email.toString()
+                )
+
+                tempList.add(google)
+
+
+            }
+            postList.addAll(tempList)
+            myAdapter.notifyDataSetChanged()
+
+
+
+        }
+
+        Firebase.firestore.collection(POST).get().addOnSuccessListener {
+            val tempList = arrayListOf<uploadPost>()
+            for(i in it.documents){
+                val post:uploadPost = i.toObject<uploadPost>()!!
+                tempList.add(post)
+
+
+            }
+            postList2.addAll(tempList)
+            myAdapter2.notifyDataSetChanged()
+
+        }
+        return binding.root
+
+
+}
+    private fun filtertext(query : String?){
+        val filteredList = ArrayList<GoogleDetails>()
+        if (query != null) {
+            for (i in postList) {
+                if (i.accountname.lowercase(Locale.ROOT).contains(query)) {
+                    filteredList.add(i)
                 }
             }
+            if (filteredList.isEmpty()) {
+                Toast.makeText(requireContext(),"No Such User", Toast.LENGTH_SHORT).show()
+            } else {
+                myAdapter.setFilteredList(filteredList)
+            }
+
+        }
+
+    }
+    private fun filtertext2(query : String?){
+        val filteredList2 = ArrayList<uploadPost>()
+        if (query != null) {
+            for (i in postList2) {
+                if (i.caption!!.lowercase(Locale.ROOT).contains(query)) {
+                    filteredList2.add(i)
+
+                }
+
+            }
+            if (filteredList2.isEmpty()) {
+
+                Toast.makeText(requireContext(),"No such post", Toast.LENGTH_SHORT).show()
+
+            } else {
+                myAdapter2.setFilteredList(filteredList2)
+
+
+            }
+
+        }
+
     }
 }

@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,8 @@ class AccountAdapter(var context: Context, var postList: ArrayList<uploadPost>):
         val caption = itemview.findViewById<TextView>(R.id.description)
         val profilepic = itemview.findViewById<ShapeableImageView>(R.id.user_pic)
         val accountname = itemview.findViewById<TextView>(R.id.user_name)
+        val likepic = itemview.findViewById<ImageButton>(R.id.like)
+        val dislikepic = itemview.findViewById<ImageButton>(R.id.dislike)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,6 +43,15 @@ class AccountAdapter(var context: Context, var postList: ArrayList<uploadPost>):
         holder.caption.text = postList.get(position).caption
         Picasso.get().load(Login.showUser().profileimage).into(holder.profilepic)
         holder.accountname.text = Login.showUser().accountname
+        holder.likepic.setOnClickListener{
+            holder.likepic.setImageResource(R.drawable.favorite)
+            holder.dislikepic.setImageResource(R.drawable.baseline_favorite_border_24)
+        }
+        holder.dislikepic.setOnClickListener{
+            holder.likepic.setImageResource(R.drawable.baseline_favorite_border_24)
+            holder.dislikepic.setImageResource(R.drawable.favorite)
+
+        }
 
 
 

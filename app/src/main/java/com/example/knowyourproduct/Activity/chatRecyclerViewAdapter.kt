@@ -1,24 +1,27 @@
 package com.example.knowyourproduct.Activity
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.knowyourproduct.Model.Post
+import com.example.knowyourproduct.Model.GoogleDetails
 import com.example.knowyourproduct.Model.uploadPost
 import com.example.knowyourproduct.R
+import com.github.marlonlom.utilities.timeago.TimeAgo
 import com.google.android.material.imageview.ShapeableImageView
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
 import com.squareup.picasso.Picasso
 
 
 class chatRecyclerViewAdapter(var postArrayList: ArrayList<uploadPost>, var context: Context) :
     RecyclerView.Adapter<chatRecyclerViewAdapter.ViewHolder>() {
+    fun setFilteredList(product: ArrayList<uploadPost>){
+        this.postArrayList = product
+        notifyDataSetChanged()
+    }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val itemview = LayoutInflater.from(parent.context).inflate(R.layout.activity_eachpost, parent, false)
             return ViewHolder(itemview)
@@ -39,6 +42,16 @@ class chatRecyclerViewAdapter(var postArrayList: ArrayList<uploadPost>, var cont
             holder.dislikepic.setImageResource(R.drawable.favorite)
 
         }
+        holder.time.text= TimeAgo.using(postArrayList.get(position).time!!.toLong())
+        holder.share.setOnClickListener {
+            val i = Intent(Intent.ACTION_SEND)
+            i.type = "text/plain"
+            i.putExtra(Intent.EXTRA_TEXT,postArrayList.get(position).postUrl)
+            context.startActivity(i)
+        }
+
+
+
 
 
     }
@@ -89,10 +102,15 @@ class chatRecyclerViewAdapter(var postArrayList: ArrayList<uploadPost>, var cont
     class ViewHolder(itemview: View):RecyclerView.ViewHolder(itemview) {
         val profilepic = itemview.findViewById<ShapeableImageView>(R.id.user_pic)
         val accountname = itemview.findViewById<TextView>(R.id.user_name)
+        val time = itemview.findViewById<TextView>(R.id.postTime)
         val caption = itemview.findViewById<TextView>(R.id.description)
         val postpic = itemview.findViewById<ShapeableImageView>(R.id.postimageid)
         val likepic = itemview.findViewById<ImageButton>(R.id.like)
         val dislikepic = itemview.findViewById<ImageButton>(R.id.dislike)
+        val share = itemview.findViewById<ImageButton>(R.id.share)
+
+
+
 
 
 //        val mViewPager= itemView.findViewById<ViewPager>(R.id.vp_slider)

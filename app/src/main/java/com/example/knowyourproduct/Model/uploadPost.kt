@@ -9,7 +9,7 @@ class uploadPost {
     var time : String? = ""
     var profilepic :String? = null
     constructor()
-    constructor(postUrl: String?,caption:String?,name:String?,time:String?,profilepic :String?){
+    constructor(postUrl: String?, caption:String?, name:String?, time: String, profilepic:String?){
         this.postUrl=postUrl
         this.caption = caption
         this.time = time

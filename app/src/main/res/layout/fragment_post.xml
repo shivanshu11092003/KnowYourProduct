@@ -12,66 +12,108 @@
 
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/selectuploadpic"
-            android:layout_width="263dp"
-            android:layout_height="237dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/c4g041cfha821"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+            android:id="@+id/user_pic"
+            android:layout_width="58dp"
+            android:layout_height="55dp"
+            android:layout_margin="8dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.043"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.219" />
+            app:layout_constraintVertical_bias="0.005"
+            app:shapeAppearance="@style/ShapeAppearance.Profile" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="129dp"
+            android:layout_height="28dp"
+            android:text="Account Name"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.066"
+            app:layout_constraintStart_toEndOf="@+id/user_pic"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.022" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/selectuploadpic"
+            android:layout_width="338dp"
+            android:layout_height="351dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/file"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
-            android:layout_width="299dp"
-            android:layout_height="53dp"
-            android:layout_marginBottom="136dp"
+            android:layout_width="336dp"
+            android:layout_height="87dp"
 
-            android:hint="write Caption"
+            android:layout_marginTop="44dp"
+            android:hint="Write Your Here Caption"
+            android:outlineAmbientShadowColor="@color/black"
+            android:outlineSpotShadowColor="@color/black"
+            android:textColorHint="@color/black"
             app:boxStrokeColor="#0074D9"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+
+
+            app:cursorColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintHorizontal_bias="0.589"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_name"
+            app:placeholderTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:textColor="@color/black"
+                android:shadowColor="@color/black"
                 android:layout_height="wrap_content"
+
                 android:visibility="visible" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="369dp"
-            android:layout_height="61dp"
+            android:layout_width="324dp"
+            android:layout_height="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.732">
+            app:layout_constraintVertical_bias="0.828">
 
             <Button
                 android:id="@+id/Uploadbtn"
-                android:layout_width="201dp"
+                android:layout_width="150dp"
                 android:layout_height="59dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="212dp"
-
-
                 android:layout_weight="1"
+
+
                 android:backgroundTint="#0074D9"
-                android:text="Upload" />
+                android:text="Upload"
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/cancelbtn"
                 style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="201dp"
-
-
+                android:layout_width="150dp"
                 android:layout_height="59dp"
+
+
                 android:layout_weight="1"
                 android:text="cancel"
+                android:textColor="@color/black"
                 app:strokeColor="#0074D9" />
         </LinearLayout>
 

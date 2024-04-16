@@ -8,7 +8,10 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.knowyourproduct.Activity.utils.POST
+import com.example.knowyourproduct.Activity.utils.User_Node
 import com.example.knowyourproduct.Model.GoogleDetails
+import com.example.knowyourproduct.Model.uploadPost
 import com.example.knowyourproduct.R
 import com.example.knowyourproduct.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
@@ -19,6 +22,9 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,7 +36,7 @@ import kotlinx.coroutines.tasks.await
 class Login : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth : FirebaseAuth
-    private lateinit var googlesigninclient : GoogleSignInClient
+
     private  var oneTapClient:SignInClient?=null
     private lateinit var signInRequest: BeginSignInRequest
 
@@ -60,6 +66,7 @@ class Login : AppCompatActivity() {
         }
 
 
+
     }
     private suspend fun signInGoogle(){
         val result = oneTapClient?.beginSignIn(signInRequest)?.await()
@@ -78,15 +85,56 @@ class Login : AppCompatActivity() {
                     val firebasecredential = GoogleAuthProvider.getCredential(idToken, null)
                     auth.signInWithCredential(firebasecredential).addOnCompleteListener {
                         if (it.isSuccessful) {
-
-
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
 
-                            Toast.makeText(this, "Sign In Complete", Toast.LENGTH_SHORT).show()
 
                             finish()
+
+                            val db = FirebaseFirestore.getInstance()
+                            val collectionref = db.collection(User_Node)
+                            collectionref.get().addOnSuccessListener {
+                                documents ->
+                                var emailExists = false
+
+                                for (document in documents) {
+                                    val email = document.getString("email")
+                                    if (email == Firebase.auth.currentUser!!.email) {
+                                        emailExists = true
+                                        break
+                                    }
+                                }
+                                       if (!emailExists) {
+                                        val d = showUser()
+
+                                        val google =
+                                            GoogleDetails(d.accountname, d.profileimage, d.email)
+                                        Firebase.firestore.collection(User_Node).document()
+                                            .set(google).addOnSuccessListener {
+                                                Toast.makeText(
+                                                    this,
+                                                    "Welcome",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
+                                    }else{
+                                        Toast.makeText(
+                                            this,
+                                            "Welcome Back",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+
+
+
+
+
+
+
+
+                            }
                         }
+
 
 
                     }
@@ -111,23 +159,25 @@ class Login : AppCompatActivity() {
         super.onStart()
         val currentuser = auth.currentUser
         if (currentuser!=null) run {
+
             showUser()
         }
   }
-    fun signoutgoogle(view: View) {
-        Firebase.auth.signOut()
 
-    }
     companion object {
 
         fun showUser(): GoogleDetails {
             val user = Firebase.auth.currentUser
             return if (user != null) {
+
                 val name = user.displayName ?: ""
+
                 val email = user.email ?: ""
                 val photourl = user.photoUrl?.toString() ?: ""
 
                 GoogleDetails(name, photourl,email)
+
+
             } else {
 
                 GoogleDetails("", "", "")
