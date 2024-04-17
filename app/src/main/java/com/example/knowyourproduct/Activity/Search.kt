@@ -42,9 +42,10 @@ class Search : Fragment() {
         binding = FragmentSearchBinding.inflate(inflater,container,false)
 
         searchView = binding.SearchView
-//        binding.recycleridSearch.visibility = View.INVISIBLE
+//        binding.recycleridpost
+//            .visibility = View.INVISIBLE
 //        binding.materialCardView.setOnClickListener{
-//            binding.recycleridSearch.visibility = View.VISIBLE
+//            binding.recycleridpost.visibility = View.VISIBLE
 //        }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
@@ -63,13 +64,13 @@ class Search : Fragment() {
         })
 
 
-//        val postList = ArrayList<GoogleDetails>()
+
         myAdapter = SearchAdapter(requireContext(),postList)
         myAdapter2 = chatRecyclerViewAdapter(postList2,requireContext())
 
         binding.recycleridpost.layoutManager = GridLayoutManager(requireContext(),2)
-//        binding.recycleridSearch.layoutManager = LinearLayoutManager(requireContext())
-//        binding.recycleridSearch.adapter= myAdapter
+        binding.recycleridSearch.layoutManager = LinearLayoutManager(requireContext())
+        binding.recycleridSearch.adapter= myAdapter
         binding.recycleridpost.adapter= myAdapter2
         val db = FirebaseFirestore.getInstance()
         val collectionref = db.collection(User_Node)
@@ -122,7 +123,7 @@ class Search : Fragment() {
                 }
             }
             if (filteredList.isEmpty()) {
-                Toast.makeText(requireContext(),"No Such User", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(),"No Such User", Toast.LENGTH_SHORT).show()
             } else {
                 myAdapter.setFilteredList(filteredList)
             }
