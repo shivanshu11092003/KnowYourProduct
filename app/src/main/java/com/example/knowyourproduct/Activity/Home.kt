@@ -24,6 +24,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
 
@@ -44,7 +45,7 @@ class Home : Fragment() {
         binding.recyclerid.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerid.adapter = adapter
 
-        Firebase.firestore.collection(POST).get()
+        Firebase.firestore.collection(POST).orderBy("time",Query.Direction.DESCENDING).get()
             .addOnSuccessListener {
                 val tempList = arrayListOf<uploadPost>()
                 for (i in it.documents) {

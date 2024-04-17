@@ -56,7 +56,7 @@
             android:layout_width="336dp"
             android:layout_height="87dp"
 
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="32dp"
             android:hint="Write Your Here Caption"
             android:outlineAmbientShadowColor="@color/black"
             android:outlineSpotShadowColor="@color/black"
@@ -64,19 +64,24 @@
             app:boxStrokeColor="#0074D9"
 
 
+            app:counterEnabled="true"
+            app:counterMaxLength="200"
             app:cursorColor="@color/black"
+            app:hintTextColor="#191818"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.589"
+            app:layout_constraintHorizontal_bias="0.573"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_name"
             app:placeholderTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:textColor="@color/black"
-                android:shadowColor="@color/black"
                 android:layout_height="wrap_content"
+                android:shadowColor="@color/black"
 
+                android:textColor="@color/black"
+                android:textColorHighlight="#151515"
+                android:textColorHint="#0E0E0E"
                 android:visibility="visible" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,8 +93,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.828">
+            app:layout_constraintTop_toBottomOf="@+id/selectuploadpic">
 
             <Button
                 android:id="@+id/Uploadbtn"
