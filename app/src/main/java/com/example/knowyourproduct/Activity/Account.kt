@@ -14,6 +14,7 @@ import com.example.knowyourproduct.databinding.FragmentAccountBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
 import com.squareup.picasso.Picasso
@@ -33,7 +34,7 @@ class Account : Fragment() {
         val adapter = AccountAdapter(requireContext(),postList)
         binding.recycleridAccount.layoutManager = LinearLayoutManager(requireContext())
         binding.recycleridAccount.adapter=adapter
-        Firebase.firestore.collection(Firebase.auth.currentUser!!.uid).get().addOnSuccessListener {
+        Firebase.firestore.collection(Firebase.auth.currentUser!!.uid).orderBy("time", Query.Direction.DESCENDING).get().addOnSuccessListener {
             val tempList = arrayListOf<uploadPost>()
             for(i in it.documents){
                 val post:uploadPost = i.toObject<uploadPost>()!!

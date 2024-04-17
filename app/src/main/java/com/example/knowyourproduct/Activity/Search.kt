@@ -20,6 +20,7 @@ import com.example.knowyourproduct.R
 import com.example.knowyourproduct.databinding.FragmentSearchBinding
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
 import java.util.Locale
@@ -106,7 +107,7 @@ class Search : Fragment() {
 
         }
 
-        Firebase.firestore.collection(POST).get().addOnSuccessListener {
+        Firebase.firestore.collection(POST).orderBy("time", Query.Direction.DESCENDING).get().addOnSuccessListener {
             val tempList = arrayListOf<uploadPost>()
             for(i in it.documents){
                 val post:uploadPost = i.toObject<uploadPost>()!!

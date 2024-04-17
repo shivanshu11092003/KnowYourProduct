@@ -2,6 +2,7 @@ package com.example.knowyourproduct.Activity
 
 
 
+import android.content.Intent
 import android.os.Bundle
 
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.example.knowyourproduct.Activity.utils.POST_FOLDER
 import com.example.knowyourproduct.Activity.utils.uploadImage
 import com.example.knowyourproduct.Model.UserUpload
 import com.example.knowyourproduct.Model.uploadPost
+import com.example.knowyourproduct.R
 import com.example.knowyourproduct.databinding.FragmentPostBinding
 import com.google.firebase.Firebase
 
@@ -75,6 +77,11 @@ class Post : Fragment() {
 
                 Firebase.firestore.collection(POST).document().set(post).addOnSuccessListener {
                     Firebase.firestore.collection(Firebase.auth.currentUser!!.uid).document().set(post).addOnSuccessListener {
+                        binding.textInputLayout.editText?.text = null
+                        binding.selectuploadpic.setImageResource(R.drawable.file)
+                        Toast.makeText(requireContext(),"Uploaded",Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(requireContext(),MainActivity::class.java))
+
 
 
                         }

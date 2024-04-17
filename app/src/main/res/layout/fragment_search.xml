@@ -49,20 +49,21 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_marginTop="8dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.482"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView">
 
             <Button
                 android:id="@+id/postbtn"
                 style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="150dp"
+                android:layout_width="100dp"
+
+
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-
                 android:layout_weight="1"
 
 
@@ -72,8 +73,10 @@
 
             <Button
                 android:id="@+id/accountbtn"
+                android:layout_width="100dp"
                 style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="150dp"
+
+
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
 
@@ -89,50 +92,55 @@
             android:layout_width="match_parent"
             android:layout_height="19dp"
             android:layout_margin="4dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginTop="7dp"
             android:background="@color/white"
             android:gravity="left"
+
             android:padding="1dp"
             android:text="     Posts "
-
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/recycleridSearch"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleridSearch"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:padding="10dp"
-            android:layout_height="565dp"
-
-
-
+            android:layout_height="600dp"
+            android:layout_marginTop="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.235"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.294"
-            tools:listitem="@layout/search_eachitem" />
+            app:layout_constraintTop_toBottomOf="@+id/notifyid">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:padding="5dp"
-            android:id="@+id/recycleridpost"
-            android:layout_width="match_parent"
-            android:layout_height="565dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleridSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5"
+                tools:listitem="@layout/search_eachitem" />
 
-
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.764"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.323"
-            tools:listitem="@layout/activity_eachpost" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleridpost"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5"
+                tools:listitem="@layout/activity_eachpost" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
