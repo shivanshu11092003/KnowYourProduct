@@ -42,11 +42,19 @@ class Search : Fragment() {
         binding = FragmentSearchBinding.inflate(inflater,container,false)
 
         searchView = binding.SearchView
-//        binding.recycleridpost
-//            .visibility = View.INVISIBLE
-//        binding.materialCardView.setOnClickListener{
-//            binding.recycleridpost.visibility = View.VISIBLE
-//        }
+        binding.accountbtn.setOnClickListener {
+            binding.notifyid.text = "Accounts"
+            binding.recycleridpost.visibility = View.INVISIBLE
+            binding.recycleridSearch.visibility = View.VISIBLE
+
+        }
+        binding.recycleridSearch.visibility = View.INVISIBLE
+
+        binding.postbtn.setOnClickListener{
+            binding.notifyid.text = "Posts"
+            binding.recycleridSearch.visibility = View.INVISIBLE
+            binding.recycleridpost.visibility = View.VISIBLE
+        }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
 
