@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.knowyourproduct.Model.uploadPost
 import com.example.knowyourproduct.R
 import com.google.android.material.imageview.ShapeableImageView
@@ -39,7 +40,8 @@ class AccountAdapter(var context: Context, var postList: ArrayList<uploadPost>):
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Picasso.get().load(postList.get(position).postUrl).into(holder.image)
+        Glide.with(holder.itemView.context).load(postList[position].postUrl).placeholder(R.drawable.picture).into(holder.image)
+
         holder.caption.text = postList.get(position).caption
         Picasso.get().load(Login.showUser().profileimage).into(holder.profilepic)
         holder.accountname.text = Login.showUser().accountname

@@ -7,13 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.knowyourproduct.Model.GoogleDetails
+import com.bumptech.glide.Glide
+
 import com.example.knowyourproduct.Model.uploadPost
 import com.example.knowyourproduct.R
 import com.github.marlonlom.utilities.timeago.TimeAgo
 import com.google.android.material.imageview.ShapeableImageView
-import com.squareup.picasso.Picasso
+
 
 
 class chatRecyclerViewAdapter(var postArrayList: ArrayList<uploadPost>, var context: Context) :
@@ -27,13 +29,28 @@ class chatRecyclerViewAdapter(var postArrayList: ArrayList<uploadPost>, var cont
             return ViewHolder(itemview)
 
         }
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.accountname.text = postArrayList.get(position).name
-        holder.caption.text = postArrayList.get(position).caption
 
-        Picasso.get().load(postArrayList.get(position).postUrl).into(holder.postpic)
-        Picasso.get().load(postArrayList.get(position).profilepic).into(holder.profilepic)
-        holder.likepic.setOnClickListener{
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        holder.accountname.text = postArrayList[position].name
+        holder.caption.text = postArrayList[position].caption
+        Glide.with(holder.itemView.context).load(postArrayList[position].postUrl).placeholder(R.drawable.picture).into(holder.postpic)
+        Glide.with(holder.itemView.context).load(postArrayList[position].profilepic).into(holder.profilepic)
+
+
+
+                holder.time.text = TimeAgo.using(postArrayList[position].time!!.toLong())
+                holder.share.setOnClickListener {
+                    val i = Intent(Intent.ACTION_SEND)
+                    i.type = "text/plain"
+                    i.putExtra(Intent.EXTRA_TEXT, postArrayList[position].postUrl)
+                    context.startActivity(i)
+                }
+
+
+
+
+                    holder.likepic.setOnClickListener{
             holder.likepic.setImageResource(R.drawable.favorite)
             holder.dislikepic.setImageResource(R.drawable.baseline_favorite_border_24)
         }
@@ -42,13 +59,7 @@ class chatRecyclerViewAdapter(var postArrayList: ArrayList<uploadPost>, var cont
             holder.dislikepic.setImageResource(R.drawable.favorite)
 
         }
-        holder.time.text= TimeAgo.using(postArrayList.get(position).time!!.toLong())
-        holder.share.setOnClickListener {
-            val i = Intent(Intent.ACTION_SEND)
-            i.type = "text/plain"
-            i.putExtra(Intent.EXTRA_TEXT,postArrayList.get(position).postUrl)
-            context.startActivity(i)
-        }
+
 
 
 
@@ -106,8 +117,9 @@ class chatRecyclerViewAdapter(var postArrayList: ArrayList<uploadPost>, var cont
         val caption = itemview.findViewById<TextView>(R.id.description)
         val postpic = itemview.findViewById<ShapeableImageView>(R.id.postimageid)
         val likepic = itemview.findViewById<ImageButton>(R.id.like)
-        val dislikepic = itemview.findViewById<ImageButton>(R.id.dislike)
+        val dislikepic = itemview.findViewById<ImageButton>(R.id.dislike)!!
         val share = itemview.findViewById<ImageButton>(R.id.share)
+        val eachfeed = itemview.findViewById<CardView>(R.id.eachpostfeedid)
 
 
 

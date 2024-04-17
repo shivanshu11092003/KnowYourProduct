@@ -59,33 +59,34 @@
             app:layout_constraintVertical_bias="0.0"
             tools:layout_editor_absoluteX="0dp" />
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recycleridSearch"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="200dp"-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleridSearch"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
 
 
-<!--            android:layout_marginTop="5dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.0"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/recycleridpost"-->
-<!--            tools:listitem="@layout/search_eachitem" />-->
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recycleridpost"
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/search_eachitem" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleridpost"
-            android:layout_width="match_parent"
-            android:layout_height="644dp"
+            android:layout_width="397dp"
+            android:layout_height="416dp"
             android:layout_margin="5dp"
 
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.461"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView"
-            app:layout_constraintVertical_bias="0.567"
+            app:layout_constraintVertical_bias="0.055"
             tools:listitem="@layout/activity_eachpost" />
 
 

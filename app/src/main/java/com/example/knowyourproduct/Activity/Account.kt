@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.knowyourproduct.Activity.utils.FOLLOW
 import com.example.knowyourproduct.Model.UserUpload
 import com.example.knowyourproduct.Model.uploadPost
 
 import com.example.knowyourproduct.databinding.FragmentAccountBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
 import com.squareup.picasso.Picasso
@@ -42,6 +44,20 @@ class Account : Fragment() {
             postList.addAll(tempList)
             adapter.notifyDataSetChanged()
 
+        }
+        val db = FirebaseFirestore.getInstance()
+        val collectionRef = db.collection(Firebase.auth.currentUser!!.email + FOLLOW)
+        collectionRef.addSnapshotListener { snapshot, exception ->
+            if (exception != null) {
+
+                return@addSnapshotListener
+            }
+
+            if (snapshot != null) {
+                val count = snapshot.size()
+                binding.followcount.text = count.toString()
+
+            }
         }
         Picasso.get().load(Login.showUser().profileimage).into(binding.imageID)
         binding.accountnameid.text= Login.showUser().accountname
