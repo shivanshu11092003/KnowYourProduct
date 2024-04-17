@@ -28,7 +28,7 @@ class generalsettingsfrag : Fragment() {
         val v= inflater.inflate(R.layout.fragment_generalsettingsfrag, container, false)
 
             val tv = v.findViewById<TextView>(R.id.username)
-            tv.text=Login.showUser().accountname
+
 
 
 
