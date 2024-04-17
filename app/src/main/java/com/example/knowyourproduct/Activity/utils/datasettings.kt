@@ -5,16 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.example.knowyourproduct.Activity.Login
 import com.example.knowyourproduct.R
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-
-
-class generalsettingsfrag : Fragment() {
-    private lateinit var databaseReference: DatabaseReference
-
+class datasettings : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,9 +17,7 @@ class generalsettingsfrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val v= inflater.inflate(R.layout.fragment_generalsettingsfrag, container, false)
-
-
+        val v= inflater.inflate(R.layout.fragment_datasettings, container, false)
 
 
 
@@ -35,5 +25,4 @@ class generalsettingsfrag : Fragment() {
 
         return v
     }
-
 }

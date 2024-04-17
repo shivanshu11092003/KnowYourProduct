@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
-    android:id="@+id/frameid"
+    android:id="@+id/mainframeid"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.Setting">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/mainframeid">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +19,14 @@
             android:fontFamily="monospace"
             android:textSize="40sp"
             android:layout_margin="6dp"/>
-
+        <FrameLayout
+            android:id="@+id/changefrag"
+            android:layout_width="match_parent"
+            android:layout_height="665dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
         <TextView
             android:id="@+id/general_settings"
@@ -62,11 +65,13 @@
             android:fontFamily="monospace"
             android:textSize="20sp"
             android:layout_marginTop="10dp"/>
+            </LinearLayout>
+
+        </FrameLayout>
     </LinearLayout>
 
 
 
 
 
-</FrameLayout>
 </FrameLayout>
