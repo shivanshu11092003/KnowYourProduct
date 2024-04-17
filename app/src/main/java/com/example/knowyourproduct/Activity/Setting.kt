@@ -41,7 +41,7 @@ class Setting : Fragment() {
 
         Picasso.get().load(Login.showUser().profileimage).into(binding.profilepic)
         binding.username.text = Login.showUser().accountname
-        binding.phonenoid.text = Login.showUser().email
+        binding.emailid.text = Login.showUser().email
         binding.backbtn.setOnClickListener {
             startActivity(Intent(requireContext(),MainActivity::class.java))
         }

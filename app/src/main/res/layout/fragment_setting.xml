@@ -77,15 +77,7 @@
                         android:text="aviralagarwal190006@gmail.com"
                         android:textSize="12sp" />
 
-                    <TextView
-                        android:id="@+id/phonenoid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textColor="@color/black"
-                        android:fontFamily="monospace"
-                        android:text="aviralagarwal190006@gmail.com"
-                        android:textSize="12sp" />
+
 
 <!--                    <Button-->
 <!--                        android:layout_width="wrap_content"-->
