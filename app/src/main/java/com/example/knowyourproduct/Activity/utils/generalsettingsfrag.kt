@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Switch
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.knowyourproduct.Activity.Login
 import com.example.knowyourproduct.R
 import com.google.firebase.database.DatabaseReference
@@ -26,7 +28,16 @@ class generalsettingsfrag : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val v= inflater.inflate(R.layout.fragment_generalsettingsfrag, container, false)
+        val darkModeSwitch = v.findViewById<Switch>(R.id.darkModeSwitch)
 
+        darkModeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+//            activity?.recreate() // Recreate the activity to apply theme changes
+        }
 
 
 

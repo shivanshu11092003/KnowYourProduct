@@ -141,14 +141,13 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
                 val headerpic=headerview.findViewById<ShapeableImageView>(R.id.imageID)
                 val headeraccountname = headerview.findViewById<TextView>(R.id.accountnameid)
                 val headeremail =headerview.findViewById<TextView>(R.id.email_navholder)
-
                 headeraccountname.text="Please Login "
                 headerpic.setImageResource(R.drawable.unnamed)
                 headeremail.text="--"
             }
             R.id.nav_login -> {
-                val intent = Intent(applicationContext,Login::class.java)
-                startActivity(intent)
+                finish()
+                startActivity(Intent(applicationContext,Login::class.java))
             }
 
 

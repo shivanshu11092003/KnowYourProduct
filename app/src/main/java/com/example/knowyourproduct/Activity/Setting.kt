@@ -13,6 +13,8 @@ import com.example.knowyourproduct.Activity.utils.accountsettingsfrag
 import com.example.knowyourproduct.Activity.utils.datasettings
 import com.example.knowyourproduct.Activity.utils.generalsettingsfrag
 import com.example.knowyourproduct.R
+import com.google.android.material.imageview.ShapeableImageView
+import com.squareup.picasso.Picasso
 
 
 class Setting : Fragment() {
@@ -30,38 +32,41 @@ class Setting : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val v=inflater.inflate(R.layout.fragment_setting, container, false)
-
-        var a =v.findViewById<TextView>(R.id.general_settings)
-        var b =v.findViewById<TextView>(R.id.account_settings)
-        var c =v.findViewById<TextView>(R.id.data_settings)
-        var d =v.findViewById<TextView>(R.id.other_settings)
-
-        a.setOnClickListener{
-            a.isGone = true
-            b.isGone = true
-            c.isGone = true
-            d.isGone = true
-            replacefrag(generalsettingsfrag())
+        var profilepic = v.findViewById<ShapeableImageView>(R.id.profilepic)
+        Picasso.get().load(Login.showUser().profileimage).into(profilepic)
 
 
-
-        }
-        b.setOnClickListener{
-            a.isGone = true
-            b.isGone = true
-            c.isGone = true
-            d.isGone = true
-            replacefrag(accountsettingsfrag ())
-
-        }
-
-        c.setOnClickListener{
-            a.isGone = true
-            b.isGone = true
-            c.isGone = true
-            d.isGone = true
-            replacefrag(datasettings())
-        }
+//        var a =v.findViewById<TextView>(R.id.general_settings)
+//        var b =v.findViewById<TextView>(R.id.account_settings)
+//        var c =v.findViewById<TextView>(R.id.data_settings)
+//        var d =v.findViewById<TextView>(R.id.other_settings)
+//
+//        a.setOnClickListener{
+//            a.isGone = true
+//            b.isGone = true
+//            c.isGone = true
+//            d.isGone = true
+//            replacefrag(generalsettingsfrag())
+//
+//
+//
+//        }
+//        b.setOnClickListener{
+//            a.isGone = true
+//            b.isGone = true
+//            c.isGone = true
+//            d.isGone = true
+//            replacefrag(accountsettingsfrag ())
+//
+//        }
+//
+//        c.setOnClickListener{
+//            a.isGone = true
+//            b.isGone = true
+//            c.isGone = true
+//            d.isGone = true
+//            replacefrag(datasettings())
+//        }
 
         return v
 

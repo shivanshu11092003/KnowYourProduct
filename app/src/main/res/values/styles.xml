@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light mode theme -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+
+    </style>
+
+    <!-- Dark mode theme -->
+    <style name="AppTheme.Dark" parent="Theme.MaterialComponents.DayNight">
+        <!-- Customize dark mode attributes -->
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/black</item>
+        <!-- Define other dark mode attributes -->
+    </style>
+</resources>
