@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
                 R.id.nav_Account -> replacefragment(Account())
                 R.id.nav_Search -> replacefragment(Search())
                 R.id.nav_Post -> replacefragment(Post())
+                R.id.nav_Setting ->replacefragment(Setting())
                 else ->{
                 }
             }
