@@ -1,5 +1,6 @@
 package com.example.knowyourproduct.Activity
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import com.example.knowyourproduct.Activity.utils.accountsettingsfrag
 import com.example.knowyourproduct.Activity.utils.datasettings
 import com.example.knowyourproduct.Activity.utils.generalsettingsfrag
 import com.example.knowyourproduct.R
+import com.example.knowyourproduct.databinding.ActivityMainBinding
 import com.example.knowyourproduct.databinding.FragmentSearchBinding
 import com.example.knowyourproduct.databinding.FragmentSettingBinding
 import com.google.android.material.imageview.ShapeableImageView
@@ -24,11 +26,11 @@ import com.squareup.picasso.Picasso
 
 class Setting : Fragment() {
     lateinit var binding : FragmentSettingBinding
+    lateinit var binding1: ActivityMainBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
     }
 
@@ -46,39 +48,18 @@ class Setting : Fragment() {
             startActivity(Intent(requireContext(),MainActivity::class.java))
         }
 
+        binding.tvlogout.setOnClickListener {
+            Firebase.auth.signOut()
+            startActivity(Intent(requireContext(), Login ::class.java))
 
-//        var a =v.findViewById<TextView>(R.id.general_settings)
-//        var b =v.findViewById<TextView>(R.id.account_settings)
-//        var c =v.findViewById<TextView>(R.id.data_settings)
-//        var d =v.findViewById<TextView>(R.id.other_settings)
-//
-//        a.setOnClickListener{
-//            a.isGone = true
-//            b.isGone = true
-//            c.isGone = true
-//            d.isGone = true
-//            replacefrag(generalsettingsfrag())
-//
-//
-//
-//        }
-//        b.setOnClickListener{
-//            a.isGone = true
-//            b.isGone = true
-//            c.isGone = true
-//            d.isGone = true
-//            replacefrag(accountsettingsfrag ())
-//
-//        }
-//
-//        c.setOnClickListener{
-//            a.isGone = true
-//            b.isGone = true
-//            c.isGone = true
-//            d.isGone = true
-//            replacefrag(datasettings())
-//        }
-
+            val headerview = binding1.navView.getHeaderView(0)
+          val headerpic=headerview.findViewById<ShapeableImageView>(R.id.imageID)
+         val headeraccountname = headerview.findViewById<TextView>(R.id.accountnameid)
+        val headeremail =headerview.findViewById<TextView>(R.id.email_navholder)
+           headeraccountname.text="Please Login "
+           headerpic.setImageResource(R.drawable.unnamed)
+          headeremail.text="--"
+        }
         return binding.root
 
     }
