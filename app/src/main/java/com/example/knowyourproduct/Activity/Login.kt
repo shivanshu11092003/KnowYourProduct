@@ -108,7 +108,7 @@ class Login : AppCompatActivity() {
                                         val d = showUser()
 
                                         val google =
-                                            GoogleDetails(d.accountname, d.profileimage, d.email)
+                                            GoogleDetails(d.accountname, d.profileimage, d.email,d.phoneno)
                                         Firebase.firestore.collection(User_Node).document()
                                             .set(google).addOnSuccessListener {
                                                 Toast.makeText(
@@ -174,13 +174,14 @@ class Login : AppCompatActivity() {
 
                 val email = user.email ?: ""
                 val photourl = user.photoUrl?.toString() ?: ""
+                val phoneno = user.phoneNumber?:""
 
-                GoogleDetails(name, photourl,email)
+                GoogleDetails(name, photourl,email,phoneno)
 
 
             } else {
 
-                GoogleDetails("", "", "")
+                GoogleDetails("", "", "","")
             }
 
         }

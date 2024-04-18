@@ -77,7 +77,7 @@ class Search : Fragment() {
         myAdapter = SearchAdapter(requireContext(),postList)
         myAdapter2 = chatRecyclerViewAdapter(postList2,requireContext())
 
-        binding.recycleridpost.layoutManager = GridLayoutManager(requireContext(),2)
+        binding.recycleridpost.layoutManager = StaggeredGridLayoutManager(1,LinearLayoutManager.VERTICAL)
         binding.recycleridSearch.layoutManager = LinearLayoutManager(requireContext())
         binding.recycleridSearch.adapter= myAdapter
         binding.recycleridpost.adapter= myAdapter2
@@ -91,9 +91,10 @@ class Search : Fragment() {
                 val accountname = i.getString("accountname")
                 val profileimage = i.getString("profileimage")
                 val email = i.getString("email")
+                val phoneno = i.getString("phoneno")
                 val google = GoogleDetails(
                     accountname.toString(), profileimage.toString(),
-                    email.toString()
+                    email.toString(),phoneno.toString()
                 )
 
                 tempList.add(google)
@@ -107,7 +108,8 @@ class Search : Fragment() {
 
         }
 
-        Firebase.firestore.collection(POST).orderBy("time", Query.Direction.DESCENDING).get().addOnSuccessListener {
+        Firebase.firestore.collection(POST).orderBy("time", Query.Direction.DESCENDING)
+            .get().addOnSuccessListener {
             val tempList = arrayListOf<uploadPost>()
             for(i in it.documents){
                 val post:uploadPost = i.toObject<uploadPost>()!!
@@ -144,7 +146,7 @@ class Search : Fragment() {
         val filteredList2 = ArrayList<uploadPost>()
         if (query != null) {
             for (i in postList2) {
-                if (i.caption!!.lowercase(Locale.ROOT).contains(query)) {
+                if (i.productname!!.lowercase(Locale.ROOT).contains(query)) {
                     filteredList2.add(i)
 
                 }
@@ -152,7 +154,7 @@ class Search : Fragment() {
             }
             if (filteredList2.isEmpty()) {
 
-                Toast.makeText(requireContext(),"No such post", Toast.LENGTH_SHORT).show()
+                
 
             } else {
                 myAdapter2.setFilteredList(filteredList2)
