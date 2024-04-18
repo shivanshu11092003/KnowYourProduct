@@ -63,7 +63,6 @@ dependencies {
     //firebase
     // https://mvnrepository.com/artifact/com.google.firebase/firebase-bom
     implementation(platform(libs.firebase.bom))
-
     implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

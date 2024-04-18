@@ -144,6 +144,8 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
                 headeraccountname.text="Please Login "
                 headerpic.setImageResource(R.drawable.unnamed)
                 headeremail.text="--"
+                finish()
+                startActivity(Intent(applicationContext,Login::class.java))
             }
             R.id.nav_login -> {
                 finish()

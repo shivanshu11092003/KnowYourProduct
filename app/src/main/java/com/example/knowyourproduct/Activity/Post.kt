@@ -50,11 +50,18 @@ class Post : Fragment() {
 
 
         binding.Uploadbtn.setOnClickListener {
-            if (binding.textInputLayout.editText?.text.toString().isEmpty() || imageUrl == null) {
+            if (binding.textInputLayout.editText?.text.toString().isEmpty() || imageUrl == null || binding.productnametextInputLayout.editText?.text.toString().isEmpty()) {
                 if (binding.textInputLayout.editText?.text.toString().isEmpty()) {
                     Toast.makeText(
                         requireContext(),
                         "Please provide caption",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                if (binding.productnametextInputLayout.editText?.text.toString().isEmpty()) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Please provide productname",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -72,11 +79,12 @@ class Post : Fragment() {
             }else{
 
                 val post = uploadPost(imageUrl, binding.textInputLayout.editText?.text.toString(),Login.showUser().accountname,
-                    System.currentTimeMillis().toString(),Login.showUser().profileimage,Login.showUser().email)
+                    System.currentTimeMillis().toString(),Login.showUser().profileimage,Login.showUser().email
+                    ,binding.productnametextInputLayout.editText?.text.toString())
 
 
                 Firebase.firestore.collection(POST).document().set(post).addOnSuccessListener {
-                    Firebase.firestore.collection(Firebase.auth.currentUser!!.uid).document().set(post).addOnSuccessListener {
+                    Firebase.firestore.collection(Firebase.auth.currentUser?.email!!).document().set(post).addOnSuccessListener {
                         binding.textInputLayout.editText?.text = null
                         binding.selectuploadpic.setImageResource(R.drawable.file)
                         Toast.makeText(requireContext(),"Uploaded",Toast.LENGTH_SHORT).show()

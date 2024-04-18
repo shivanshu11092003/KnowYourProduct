@@ -26,6 +26,7 @@ class AccountAdapter(var context: Context, var postList: ArrayList<uploadPost>):
         val accountname = itemview.findViewById<TextView>(R.id.user_name)
         val likepic = itemview.findViewById<ImageButton>(R.id.like)
         val dislikepic = itemview.findViewById<ImageButton>(R.id.dislike)
+        val productname  = itemview.findViewById<TextView>(R.id.productname)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -54,6 +55,8 @@ class AccountAdapter(var context: Context, var postList: ArrayList<uploadPost>):
             holder.dislikepic.setImageResource(R.drawable.favorite)
 
         }
+        holder.productname.text = "@ "+postList[position].productname
+
 
 
 

@@ -59,6 +59,7 @@ class chatRecyclerViewAdapter(var postArrayList: ArrayList<uploadPost>, var cont
             holder.dislikepic.setImageResource(R.drawable.favorite)
 
         }
+        holder.productname.text = "@ "+postArrayList[position].productname
 
 
 
@@ -119,7 +120,8 @@ class chatRecyclerViewAdapter(var postArrayList: ArrayList<uploadPost>, var cont
         val likepic = itemview.findViewById<ImageButton>(R.id.like)
         val dislikepic = itemview.findViewById<ImageButton>(R.id.dislike)!!
         val share = itemview.findViewById<ImageButton>(R.id.share)
-        val eachfeed = itemview.findViewById<CardView>(R.id.eachpostfeedid)
+
+        val productname  = itemview.findViewById<TextView>(R.id.productname)
 
 
 
