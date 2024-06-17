@@ -95,6 +95,8 @@ dependencies {
     implementation(libs.converter.gson)
     //lib_to_change_hexacodeIntoTime
     implementation(libs.timeago)
+    //Swipe to refresh
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 
 
 }

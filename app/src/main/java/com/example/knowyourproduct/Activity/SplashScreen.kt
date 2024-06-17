@@ -14,11 +14,13 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_splash_screen)
-        Handler().postDelayed({
+         Handler().postDelayed({
             if (isLoggenIn()){
-             navigatetoHome() }
+                startActivity(Intent(this,MainActivity::class.java))
+              }
             else {
-             navigatetoLogin() }
+                startActivity(Intent(this,Login::class.java))
+             }
             finish()
                               } , 3000)
     }
@@ -30,11 +32,5 @@ class SplashScreen : AppCompatActivity() {
     }
 
 
-    private fun navigatetoLogin() {
 
-    }
-
-    private fun navigatetoHome() {
-        val intent = Intent(this,MainActivity::class.java)
-        startActivity(intent)    }
 }

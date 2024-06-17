@@ -6,11 +6,19 @@
     android:background="@color/white"
     tools:context=".Activity.Home">
 
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/swipetorefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerid"
         tools:listitem="@layout/activity_eachpost"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
 </FrameLayout>

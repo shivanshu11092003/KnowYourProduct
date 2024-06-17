@@ -49,7 +49,11 @@ class Post : Fragment() {
         binding.userName.text = Login.showUser().accountname
 
 
+
+
         binding.Uploadbtn.setOnClickListener {
+
+
             if (binding.textInputLayout.editText?.text.toString().isEmpty() || imageUrl == null || binding.productnametextInputLayout.editText?.text.toString().isEmpty()) {
                 if (binding.textInputLayout.editText?.text.toString().isEmpty()) {
                     Toast.makeText(
@@ -74,14 +78,16 @@ class Post : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-
-
             }else{
-
-                val post = uploadPost(imageUrl, binding.textInputLayout.editText?.text.toString(),Login.showUser().accountname,
-                    System.currentTimeMillis().toString(),Login.showUser().profileimage,Login.showUser().email
-                    ,binding.productnametextInputLayout.editText?.text.toString())
-
+                val post = uploadPost(
+                    imageUrl,
+                    Login.showUser().email
+                    ,
+                    binding.textInputLayout.editText?.text.toString()
+                    ,Login.showUser().accountname,
+                    System.currentTimeMillis().toString(),
+                    Login.showUser().profileimage,
+                   binding.productnametextInputLayout.editText?.text.toString())
 
                 Firebase.firestore.collection(POST).document().set(post).addOnSuccessListener {
                     Firebase.firestore.collection(Firebase.auth.currentUser?.email!!).document().set(post).addOnSuccessListener {
@@ -90,10 +96,7 @@ class Post : Fragment() {
                         Toast.makeText(requireContext(),"Uploaded",Toast.LENGTH_SHORT).show()
                         startActivity(Intent(requireContext(),MainActivity::class.java))
 
-
-
                         }
-
                 }
             }
 
@@ -104,15 +107,12 @@ class Post : Fragment() {
 
     }
 
-
     private var  launcher = registerForActivityResult(ActivityResultContracts.GetContent()){
         uri ->
         uri?.let {
             uploadImage(uri , POST_FOLDER) {
             url ->
             url?.let {
-
-
 
                 binding.selectuploadpic.setImageURI(uri)
                 imageUrl= url
@@ -127,19 +127,12 @@ class Post : Fragment() {
 
                 }
 
-
-
             }?: run {
 
                 Toast.makeText(requireContext(), "Failed to upload image", Toast.LENGTH_SHORT).show()
             }
 
-
-
             }
-
-
-
 
     }
     }

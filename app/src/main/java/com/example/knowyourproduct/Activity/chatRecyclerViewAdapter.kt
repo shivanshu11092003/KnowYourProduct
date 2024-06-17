@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
@@ -18,10 +17,15 @@ import com.google.android.material.imageview.ShapeableImageView
 
 
 
-class chatRecyclerViewAdapter(var postArrayList: ArrayList<uploadPost>, var context: Context) :
+class chatRecyclerViewAdapter(var postArrayList: List<uploadPost>, var context: Context) :
     RecyclerView.Adapter<chatRecyclerViewAdapter.ViewHolder>() {
+    private var dataList = listOf<uploadPost>()
     fun setFilteredList(product: ArrayList<uploadPost>){
         this.postArrayList = product
+        notifyDataSetChanged()
+    }
+    fun setData(data: MutableList<uploadPost>) {
+        dataList = data
         notifyDataSetChanged()
     }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,12 +40,9 @@ class chatRecyclerViewAdapter(var postArrayList: ArrayList<uploadPost>, var cont
         holder.caption.text = postArrayList[position].caption
         Glide.with(holder.itemView.context).load(postArrayList[position].postUrl).placeholder(R.drawable.picture).into(holder.postpic)
         Glide.with(holder.itemView.context).load(postArrayList[position].profilepic).into(holder.profilepic)
-
-
-
-                holder.time.text = TimeAgo.using(postArrayList[position].time!!.toLong())
-                holder.share.setOnClickListener {
-                    val i = Intent(Intent.ACTION_SEND)
+        holder.time.text = TimeAgo.using(postArrayList[position].time!!.toLong())
+        holder.share.setOnClickListener {
+            val i = Intent(Intent.ACTION_SEND)
                     i.type = "text/plain"
                     i.putExtra(Intent.EXTRA_TEXT, postArrayList[position].postUrl)
                     context.startActivity(i)

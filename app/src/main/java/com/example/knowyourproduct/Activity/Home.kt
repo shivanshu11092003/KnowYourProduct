@@ -2,52 +2,45 @@ package com.example.knowyourproduct.Activity
 
 
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-
-
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.knowyourproduct.Activity.utils.FOLLOW
 import com.example.knowyourproduct.Activity.utils.POST
-
 import com.example.knowyourproduct.Model.uploadPost
-import com.example.knowyourproduct.R
-import com.example.knowyourproduct.databinding.FragmentAccountBinding
-
 import com.example.knowyourproduct.databinding.FragmentHomeBinding
 import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 
 class Home : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-
+    val tempList = arrayListOf<uploadPost>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val postList = ArrayList<uploadPost>()
         val adapter = chatRecyclerViewAdapter(postList, requireContext())
         binding.recyclerid.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerid.adapter = adapter
 
-        Firebase.firestore.collection(POST).orderBy("time",Query.Direction.DESCENDING).get()
+        Firebase.firestore.collection(POST).orderBy("time", Query.Direction.DESCENDING).get()
             .addOnSuccessListener {
-                val tempList = arrayListOf<uploadPost>()
+
                 for (i in it.documents) {
                     val post: uploadPost = i.toObject<uploadPost>()!!
 
@@ -59,34 +52,20 @@ class Home : Fragment() {
                 adapter.notifyDataSetChanged()
 
 
+
+
             }
+        binding.swipetorefresh.setOnRefreshListener {
+            postList.clear()
+            postList.addAll(tempList)
+            binding.recyclerid.adapter!!.notifyDataSetChanged()
+            binding.swipetorefresh.isRefreshing = false
+
+        }
 
 
-//        val db = FirebaseFirestore.getInstance()
-//        val collectionref = db.collection(Firebase.auth.currentUser!!.uid + FOLLOW)
-//        collectionref.get().addOnSuccessListener { documents ->
-//            var emailExists = false
-//
-//
-//            for (document in documents) {
-//
-//                for (index in postList.indices)
-//                    postList[index].email = document.getString("email")
-//                emailExists = true
-//                break
-//            }
-//            if (!emailExists) {
-//
-//            }else{
-//
-//            }
-//        }
-
-
-
-
-        
         return binding.root
+    }
 
 
     }
@@ -96,7 +75,6 @@ class Home : Fragment() {
 
 
 
-}
 
 
 

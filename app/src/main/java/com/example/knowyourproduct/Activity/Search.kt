@@ -6,16 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.knowyourproduct.Activity.utils.User_Node
 import com.example.knowyourproduct.Model.GoogleDetails
 import androidx.appcompat.widget.SearchView
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.knowyourproduct.Activity.utils.POST
 import com.example.knowyourproduct.Model.uploadPost
-import com.example.knowyourproduct.R
 
 import com.example.knowyourproduct.databinding.FragmentSearchBinding
 import com.google.firebase.Firebase
